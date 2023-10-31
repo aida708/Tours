@@ -1,24 +1,19 @@
 import React from "react";
+import Tour from "./Tour";
+//render tours: map over the tour array and render a Tour comp for each tour.
 
-export default function Tours() {
-  const [tours, setTours] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(url);
-        const listOfTours = await response.json();
-        setTours(listOfTours);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, []);
-
+export default function Tours({ tours }) {
   return (
-    <div>
-      <h2>Tours</h2>
-    </div>
+    <section>
+      <div className="title">
+        <h2>Our Tours</h2>
+      </div>
+      <div className="tours">
+        {tours.map((tour) => {
+          console.log(tour);
+          return <Tour key={tour.id} {...tour} />;
+        })}
+      </div>
+    </section>
   );
 }
